@@ -1,0 +1,202 @@
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";overflow:auto;}
+		#allmap{height:500px;width:100%;display:none;}
+		#r-result,#div1{width:100%; font-size:14px;}
+		
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=vNVPMSDWNZm3Whu0W469R0PmrSydmbcz"></script>
+	<script src = "js/jquery.js"></script>	
+	<title>城市名定位</title>
+</head>
+<body>
+	<div id="allmap"></div>
+	
+	<div id="r-result">
+		<input type="button" value="点我" onclick="bb()" />
+		<input type="button" value="时间数组" onclick="getdis()" />
+		
+		<input type="text" value="" id="time_text" />
+		<input type="text" value="" id="count_text" />个
+		<p id='p_time'></p>
+		<table border="1">
+			<tr id="time"></tr>
+		</table>
+		<table border="1">
+			<tr id="dis"></tr>
+		</table>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");
+	map.centerAndZoom("成都",15); 
+	//map.centerAndZoom(new BMap.Point(116.404, 39.915), 12);
+	//var all_points = new Array();
+	var output = new Array();
+	var output2 = new Array();
+	//var n =0;	
+	transit = new BMap.DrivingRoute(map, {renderOptions: {map: map}});	
+    
+	
+	var mycars=new Array();
+	mycars = [[103.985272, 30.596266], [103.840545, 30.666324], [104.233915, 30.655102], [103.975997, 30.661402], [104.114013, 30.947109], [103.914821, 30.382478], [104.068132, 30.677681], [104.074488, 30.766221], [104.063184, 30.621445], [103.526338, 30.580576], [107.21558, 30.742227], [104.101763, 30.684715], [104.02731, 30.665375], [104.035122, 30.639816], [104.078171, 30.509079], [104.084634, 30.618309], [104.26724, 30.553361], [106.09279, 30.801611], [104.267312, 30.897759], [104.077056, 30.658545], [103.46868, 30.407623], [105.379051, 30.864054], [104.111733, 30.650633], [103.864362, 30.692485], [104.185501, 30.816061], [104.020953, 30.700217], [103.986832, 30.650895], [104.652978, 30.128409], [104.048047, 30.557234], [104.026923, 30.675858], [104.397788, 31.110966], [104.033832, 30.68923], [104.06792, 30.60769], [104.049237, 30.531143], [103.921071, 30.601453], [103.980237, 30.556182]];
+	N = mycars.length;
+	map.enableScrollWheelZoom(true);
+	/*
+	setTimeout(function(){
+		map.setZoom(14);   
+	}, 2000);  //2秒后放大到14级
+	map.enableScrollWheelZoom(true);
+	
+	// 编写自定义函数,创建标注
+	function addMarker(point){
+	  var marker = new BMap.Marker(point);
+	  map.addOverlay(marker);
+	}
+	// 随机向地图添加25个标注
+	
+	for (var i = 0; i < 36; i ++) {
+		var point = new BMap.Point(mycars[i][0], mycars[i][1]);
+		addMarker(point);
+		
+	}
+	
+	*/
+	
+	
+	
+	/*for(var ii = 0; ii < 1; ++ii){
+		var searchComplete = function (results){
+		if (transit.getStatus() != BMAP_STATUS_SUCCESS){
+			return ;
+		}
+			var plan = results.getPlan(0);
+			output[0] = plan.getDuration(true);                //获取时间
+		
+			output[1] = plan.getDistance(true);             //获取距离
+			var t1 = "<td >" + String(output[0]) + "</td>";			
+			//$("#time").empty();
+			//$("#time").append(t1);
+			alert($("#time").html());
+			var t2 = "<td >" + String(output[1]) + "</td>";
+			//$("#dis").empty();
+			//$("#dis").append(t2);
+		}
+		var transit = new BMap.DrivingRoute(map, {renderOptions: {map: map},
+				onSearchComplete: searchComplete,
+				onPolylinesSet: function(){        
+				}});
+		
+		var end = new BMap.Point(mycars[ii][0],mycars[ii][1]);
+		
+		transit.search(start,end);
+		
+	}*/
+	
+	function getdis(){
+		alert(output);
+		alert(output.length);
+		alert(output2);
+		alert(output2.length);
+	
+	}
+	
+	function get_dt(start,end){
+		
+		
+		
+		var searchComplete = function (results){
+			if (transit.getStatus() != BMAP_STATUS_SUCCESS){
+				output.push("0");
+				output2.push("0");
+				return ;
+			}
+			var plan = results.getPlan(0);
+			var temp_time = plan.getDuration(true);                //获取时间
+			$("#time_text").val(temp_time);
+			output.push(temp_time);
+			//$("#p_time").text(output.join(','));
+			var temp_dis = plan.getDistance(true);             //获取距离
+			output2.push(temp_dis);
+			$("#count_text").val(output.length);
+			
+		}
+		
+		//var transit = new BMap.DrivingRoute(map, {renderOptions: {map: map}});	
+		transit.search(start,end);
+		transit.setSearchCompleteCallback(searchComplete);
+		
+		//transit.search(start,end);
+		
+		
+		
+	
+	
+	}
+	
+	function dt_result(){
+		var result = transit.getResults();
+		var plan = result.getPlan(0);
+		var temp_time = plan.getDuration(true);                //获取时间
+		$("#time_text").val(temp_time);
+		output.push(temp_time);
+		//$("#p_time").text(output.join(','));
+		var temp_dis = plan.getDistance(true);             //获取距离
+		output2.push(temp_dis);
+		$("#count_text").val(output.length);
+	}
+	
+	var all = 0;
+	
+	function bb(){
+		alert(N);
+		for(var i = 0; i < N; ++i){
+			var start = new BMap.Point(mycars[i][0],mycars[i][1]);
+			for(var ii = i; ii < N; ++ii){
+				var end = new BMap.Point(mycars[ii][0],mycars[ii][1]);
+				get_dt(start,end);
+				//dt_result();
+				all += 1;
+			}
+		}		
+			
+		alert(all);
+		
+	}
+		
+		
+	
+	
+	function aa(){
+	var output = "从上地到西单驾车需要";
+	var searchComplete = function (results){
+		if (transit.getStatus() != BMAP_STATUS_SUCCESS){
+			return ;
+		}
+		var plan = results.getPlan(0);
+		output += plan.getDuration(true) + "\n";                //获取时间
+		output += "总路程为：" ;
+		output += plan.getDistance(true) + "\n";             //获取距离
+	}
+	var transit = new BMap.DrivingRoute(map, {renderOptions: {map: map},
+		onSearchComplete: searchComplete,
+		onPolylinesSet: function(){        
+			setTimeout(function(){alert(output)},"1000");
+	}});
+	transit.search("上地", "西单");
+  }
+	
+	
+	
+	
+	
+	
+	
+</script>

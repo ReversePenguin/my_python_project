@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../djcode/BIGDATA/.idea/BIGDATA.iml" filepath="$PROJECT_DIR$/../djcode/BIGDATA/.idea/BIGDATA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../DeepLearning/.idea/DeepLearning.iml" filepath="$PROJECT_DIR$/../DeepLearning/.idea/DeepLearning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../DeepLearning_py3/.idea/DeepLearning_py3.iml" filepath="$PROJECT_DIR$/../DeepLearning_py3/.idea/DeepLearning_py3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../djcode/Dj_gaoji/.idea/Dj_gaoji.iml" filepath="$PROJECT_DIR$/../djcode/Dj_gaoji/.idea/Dj_gaoji.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Projects/.idea/Projects.iml" filepath="$PROJECT_DIR$/../Projects/.idea/Projects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../TicketSearch/.idea/TicketSearch.iml" filepath="$PROJECT_DIR$/../TicketSearch/.idea/TicketSearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../djcode/VRP/.idea/VRP.iml" filepath="$PROJECT_DIR$/../djcode/VRP/.idea/VRP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../djcode/model_test/.idea/model_test.iml" filepath="$PROJECT_DIR$/../djcode/model_test/.idea/model_test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../djcode/mysite1/.idea/mysite1.iml" filepath="$PROJECT_DIR$/../djcode/mysite1/.idea/mysite1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/untitled.iml" filepath="$PROJECT_DIR$/.idea/untitled.iml" />
+    </modules>
+  </component>
+</project>
